@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/utils/seo";
 import { ProductDetail } from "@/components/store/ProductDetail";
 
 interface Params {
-  params: { handle: string };
+  params: Promise<{ handle: string }>;
 }
 
 export async function generateStaticParams() {
@@ -13,16 +13,18 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Params) {
-  const product = await getProductByHandle(params.handle).catch(() => null);
+  const { handle } = await params;
+  const product = await getProductByHandle(handle).catch(() => null);
   return buildMetadata({
     title: product?.title ?? "Product",
     description: product?.descriptionHtml?.replace(/<[^>]+>/g, "") ?? "Product detail",
-    path: `/shop/products/${params.handle}`,
+    path: `/shop/products/${handle}`,
   });
 }
 
 export default async function ProductDetailPage({ params }: Params) {
-  const product = await getProductByHandle(params.handle).catch(() => null);
+  const { handle } = await params;
+  const product = await getProductByHandle(handle).catch(() => null);
   if (!product) return notFound();
   return <ProductDetail product={product} />;
 }

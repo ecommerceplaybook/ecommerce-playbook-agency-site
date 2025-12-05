@@ -6,7 +6,7 @@ import { Prose } from "@/components/ui/Prose";
 import { Card } from "@/components/ui/Card";
 
 interface Params {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -15,16 +15,18 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Params) {
-  const study = await getCaseStudyBySlug(params.slug).catch(() => null);
+  const { slug } = await params;
+  const study = await getCaseStudyBySlug(slug).catch(() => null);
   return buildMetadata({
     title: study?.title ?? "Case Study",
     description: study?.summary ?? "Conversion lift story from eCommerce Playbook",
-    path: `/case-studies/${params.slug}`,
+    path: `/case-studies/${slug}`,
   });
 }
 
 export default async function CaseStudyDetail({ params }: Params) {
-  const study = await getCaseStudyBySlug(params.slug).catch(() => null);
+  const { slug } = await params;
+  const study = await getCaseStudyBySlug(slug).catch(() => null);
   if (!study) return notFound();
 
   return (

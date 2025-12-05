@@ -4,7 +4,7 @@ import { buildMetadata } from "@/lib/utils/seo";
 import { BlogPostBody } from "@/components/content/BlogPostBody";
 
 interface Params {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -13,16 +13,18 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Params) {
-  const post = await getBlogPostBySlug(params.slug).catch(() => null);
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug).catch(() => null);
   return buildMetadata({
     title: post?.title ?? "Blog Post",
     description: post?.excerpt ?? "CRO insights",
-    path: `/blog/${params.slug}`,
+    path: `/blog/${slug}`,
   });
 }
 
 export default async function BlogPostPage({ params }: Params) {
-  const post = await getBlogPostBySlug(params.slug).catch(() => null);
+  const { slug } = await params;
+  const post = await getBlogPostBySlug(slug).catch(() => null);
   if (!post) return notFound();
 
   return <BlogPostBody post={post} />;

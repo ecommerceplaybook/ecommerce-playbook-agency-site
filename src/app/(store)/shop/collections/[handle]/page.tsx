@@ -6,7 +6,7 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { ProductGrid } from "@/components/store/ProductGrid";
 
 interface Params {
-  params: { handle: string };
+  params: Promise<{ handle: string }>;
 }
 
 export async function generateStaticParams() {
@@ -15,16 +15,18 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Params) {
-  const { collection } = await getCollectionByHandle(params.handle).catch(() => ({ collection: null }));
+  const { handle } = await params;
+  const { collection } = await getCollectionByHandle(handle).catch(() => ({ collection: null }));
   return buildMetadata({
     title: collection?.title ?? "Collection",
     description: collection?.descriptionHtml?.replace(/<[^>]+>/g, "") ?? "Shop curated products",
-    path: `/shop/collections/${params.handle}`,
+    path: `/shop/collections/${handle}`,
   });
 }
 
 export default async function CollectionDetailPage({ params }: Params) {
-  const { collection, products } = await getCollectionByHandle(params.handle).catch(() => ({
+  const { handle } = await params;
+  const { collection, products } = await getCollectionByHandle(handle).catch(() => ({
     collection: null,
     products: [],
   }));
