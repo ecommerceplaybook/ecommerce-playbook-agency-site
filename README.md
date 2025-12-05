@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## eCommerce Playbook – Headless Shopify + Supabase Stack
 
-## Getting Started
+This repo is a modular Next.js (App Router) starter for eCommerce Playbook, combining a marketing site, CMS-backed content, and a headless Shopify storefront. Pages are section-driven to keep content flexible and re-usable.
 
-First, run the development server:
+### Tech Stack
+- Next.js 16 (App Router, ISR)
+- TypeScript + ESLint (strict)
+- Tailwind CSS v4
+- Supabase (content + tools)
+- Shopify Storefront API (products & collections)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Project Structure
+- `src/app/(marketing)` – homepage, about, faq, case studies, contact
+- `src/app/(content)` – blog + tools (Supabase CMS)
+- `src/app/(store)` – Shopify-powered shop routes
+- `src/app/api/*` – contact, tools, and Shopify proxy routes
+- `src/components` – modular section, UI, and store components
+- `src/lib` – Supabase + Shopify clients, queries, and utilities
+- `supabase/schema.sql` – seed schema for CMS tables
+
+### Environment Variables
+Create a `.env.local` file with:
+```
+NEXT_PUBLIC_SUPABASE_URL=<supabase-url>
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<supabase-anon-key>
+SHOPIFY_STORE_DOMAIN=<store>.myshopify.com
+SHOPIFY_STOREFRONT_TOKEN=<storefront-access-token>
+NEXT_PUBLIC_SITE_URL=https://www.ecommerceplaybook.com
+# Optional
+EMAIL_PROVIDER_API_KEY=<resend-or-sendgrid-key>
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Scripts
+- `npm run dev` – local development
+- `npm run build` – production build
+- `npm run start` – run compiled output
+- `npm run lint` – ESLint (core web vitals config)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Supabase
+`supabase/schema.sql` contains the tables for pages, blog posts, case studies, FAQ items, and tools. Apply them via Supabase SQL editor or migrations before running the site.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Shopify
+The storefront pages and `/api/shopify/*` routes rely on Storefront API. Provide the domain + token in `.env.local`. The Add to Cart button is stubbed to redirect to the hosted PDP until cart APIs are integrated.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Deployment
+Deploy on Vercel with the above environment variables. All pages default to ISR (revalidate 120–300s) so marketing content stays fresh without rebuilds. Supabase + Shopify fetchers throw on error; ensure env vars are set before deploying.
