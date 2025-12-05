@@ -7,6 +7,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "ghost" | "utility";
   size?: "md" | "lg";
   children: ReactNode;
+  target?: string;
 }
 
 const baseStyles =
@@ -27,12 +28,12 @@ const sizes: Record<string, string> = {
   lg: "px-6 py-3 text-lg",
 };
 
-export function Button({ href, variant = "primary", size = "md", className, children, ...props }: ButtonProps) {
+export function Button({ href, variant = "primary", size = "md", className, children, target, ...props }: ButtonProps) {
   const classes = cn(baseStyles, variants[variant], sizes[size], className);
 
   if (href) {
     return (
-      <Link href={href} className={classes}>
+      <Link href={href} className={classes} target={target}>
         {children}
       </Link>
     );
