@@ -17,7 +17,9 @@ export function ToolDetailSection({ tool }: { tool: Tool }) {
         <div className="rounded-3xl border border-slate-200 bg-slate-50 p-6">
           <p className="text-sm uppercase tracking-[0.3em] text-slate-500">Usage</p>
           <p className="mt-3 text-base text-slate-600">
-            {tool.metadata?.usage ?? "Embed this workflow into your CRO sprints or share with your team."}
+            {typeof tool.metadata?.usage === "string" 
+              ? tool.metadata.usage 
+              : "Embed this workflow into your CRO sprints or share with your team."}
           </p>
           {tool.link_url && (
             <Button href={tool.link_url} className="mt-6 w-full" target={tool.is_external ? "_blank" : undefined}>
