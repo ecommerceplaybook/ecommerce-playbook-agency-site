@@ -1,23 +1,26 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 const testimonials = [
   {
-    quote: "Michael is a unicorn and an absolute dream to work with! Not only did him and his team deliver an incredible website redesign with a responsive backend, and improved front-end…",
+    quote: "Michael is a unicorn and an absolute dream to work with! Not only did him and his team deliver an incredible website redesign with a responsive backend, and improved front-end, they did it while hitting all deliverables in record time. The communication along the way was top notch. We have already seen a big conversion lift thanks to Michael's work and are looking forward to working him again!",
     author: "Client",
     role: "Shopify Brand Owner",
   },
   {
-    quote: "Michael is an absolute professional through and through. He's extraordinarily competent in his skillset, and I grew to appreciate his adaptability when details change.",
+    quote: "Michael is an absolute professional through and through. He's extraordinarily competent in his skillset, and I grew to appreciate his adaptability when details change. I highly recommend his services.",
     author: "Client",
     role: "Furniture Brand Owner",
   },
   {
-    quote: "Michael is an outstanding freelancer. He is organized, shows up on time, and goes above and beyond with his work. We had a pretty serious issue with our website functionality…",
+    quote: "Michael is an outstanding freelancer. He is organized, shows up on time, and goes above and beyond with his work. We had a pretty serious issue with our website functionality, data tracking, and CRO. Michael jumped on board and quickly figured out our issues. 10/10 would recommend!",
     author: "Client",
     role: "DTC Brand Owner",
   },
   {
-    quote: "Michael was excellent to work with on the design of a semi-custom Shopify theme. He helped us select the best premium theme based on initial meetings to discuss what our…",
+    quote: "Michael was excellent to work with on the design of a semi-custom Shopify theme. He helped us select the best premium theme based on initial meetings to discuss what our goals and aspirations were for the project. Once he got to work, he was fast, but not sloppy, he responded quickly to questions, he offered input from both the design side but the marketing side as well. I interviewed several designers and I'm thankful I ended up selecting Michael for the job!",
     author: "Client",
     role: "Retail Medical Store",
   },
@@ -32,6 +35,49 @@ const testimonials = [
     role: "Supplement Brand",
   },
 ];
+
+function TestimonialCard({ testimonial, index }: { testimonial: typeof testimonials[0]; index: number }) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div
+      className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md"
+    >
+      {/* Stars */}
+      <div className="mb-4 flex gap-1">
+        {[...Array(5)].map((_, i) => (
+          <svg key={i} className="h-5 w-5 text-[#72fd4e]" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+          </svg>
+        ))}
+      </div>
+
+      {/* Quote */}
+      <div className="mb-6">
+        <p className={`text-base leading-relaxed text-[#030901] ${!isExpanded ? 'line-clamp-4' : ''}`}>
+          {testimonial.quote}
+        </p>
+        {testimonial.quote.length > 200 && (
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="mt-2 text-sm font-medium text-[#72fd4e] hover:text-[#aafe24] transition-colors"
+          >
+            {isExpanded ? 'See less' : 'See more'}
+          </button>
+        )}
+      </div>
+
+      {/* Author */}
+      <div className="flex items-center gap-3">
+        <div className="h-10 w-10 shrink-0 rounded-full bg-gradient-to-br from-[#72fd4e] to-[#aafe24]" />
+        <div>
+          <p className="text-sm font-medium text-[#030901]">{testimonial.author}</p>
+          <p className="text-xs text-[#030901]/73">{testimonial.role}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function ExtendedTestimonialsSection() {
   return (
@@ -61,34 +107,7 @@ export default function ExtendedTestimonialsSection() {
           <div className="relative">
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {testimonials.map((testimonial, index) => (
-                <div
-                  key={index}
-                  className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md"
-                >
-                  {/* Stars */}
-                  <div className="mb-4 flex gap-1">
-                    {[...Array(4)].map((_, i) => (
-                      <svg key={i} className="h-5 w-5 text-[#72fd4e]" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                      </svg>
-                    ))}
-                    <svg className="h-5 w-5 text-gray-300" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  </div>
-
-                  {/* Quote */}
-                  <p className="mb-6 text-base leading-relaxed text-[#030901]">{testimonial.quote}</p>
-
-                  {/* Author */}
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 shrink-0 rounded-full bg-gradient-to-br from-[#72fd4e] to-[#aafe24]" />
-                    <div>
-                      <p className="text-sm font-medium text-[#030901]">{testimonial.author}</p>
-                      <p className="text-xs text-[#030901]/73">{testimonial.role}</p>
-                    </div>
-                  </div>
-                </div>
+                <TestimonialCard key={index} testimonial={testimonial} index={index} />
               ))}
             </div>
 

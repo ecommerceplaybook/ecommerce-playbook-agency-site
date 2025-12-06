@@ -47,12 +47,14 @@ export default function Header() {
 
   return (
     <header 
-      className="sticky top-0 z-50 bg-black border-b border-gray-800"
+      className="fixed top-0 left-0 right-0 z-50 px-4 pt-4"
       onMouseLeave={() => setOpenDropdown(null)}
     >
-      <div className="relative">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+      <div className="relative mx-auto max-w-7xl">
+        <div className="relative">
+          <div className="rounded-[12px] bg-black/90 backdrop-blur-md border border-gray-800/50 shadow-lg border-b-2 border-b-[#030901]">
+            <div className="px-4 sm:px-6 lg:px-8">
+              <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="inline-flex items-center">
               <div className="inline-flex items-center rounded-md p-[2px] bg-gradient-to-r from-[#008060] via-[#95bf47] to-[#1a365d]">
@@ -124,53 +126,52 @@ export default function Header() {
                 )}
               </svg>
             </button>
-          </div>
-        </div>
-
-        {/* Full Width Dropdown Menu */}
-        {openDropdown && (
-          <div 
-            className="absolute top-full left-0 right-0 w-full bg-black border-t border-gray-800 shadow-xl z-40 overflow-hidden"
-            onMouseEnter={() => setOpenDropdown(openDropdown)}
-            onMouseLeave={() => setOpenDropdown(null)}
-            style={{
-              animation: 'slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-            }}
-          >
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8">
-              <div className="grid grid-cols-4 gap-6">
-                {dropdownItems[openDropdown as keyof typeof dropdownItems]?.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="group relative overflow-hidden rounded-lg aspect-square"
-                    onClick={() => setOpenDropdown(null)}
-                  >
-                    <div className="relative w-full h-full">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover transition-transform duration-300 group-hover:scale-110"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                      <div className="absolute bottom-0 left-0 right-0 p-4">
-                        <h3 className="text-white font-semibold text-sm group-hover:text-green-400 transition-colors">
-                          {item.title}
-                        </h3>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
               </div>
-            </div>
-          </div>
-        )}
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden border-t border-gray-800 py-4">
-            <nav className="flex flex-col gap-4">
+              {/* Full Width Dropdown Menu */}
+              {openDropdown && (
+                <div 
+                  className="absolute top-full left-0 right-0 mt-2 rounded-[12px] bg-black/95 backdrop-blur-md border border-gray-800/50 shadow-xl z-40 overflow-hidden"
+                  onMouseEnter={() => setOpenDropdown(openDropdown)}
+                  onMouseLeave={() => setOpenDropdown(null)}
+                  style={{
+                    animation: 'slideDown 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                  }}
+                >
+                  <div className="px-4 sm:px-6 lg:px-8 py-8">
+                    <div className="grid grid-cols-4 gap-6">
+                      {dropdownItems[openDropdown as keyof typeof dropdownItems]?.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className="group relative overflow-hidden rounded-lg aspect-square"
+                          onClick={() => setOpenDropdown(null)}
+                        >
+                          <div className="relative w-full h-full">
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              fill
+                              className="object-cover transition-transform duration-300 group-hover:scale-110"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                            <div className="absolute bottom-0 left-0 right-0 p-4">
+                              <h3 className="text-white font-semibold text-sm group-hover:text-green-400 transition-colors">
+                                {item.title}
+                              </h3>
+                            </div>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Mobile Menu */}
+              {mobileMenuOpen && (
+                <div className="md:hidden border-t border-gray-800/50 py-4 px-4 sm:px-6 lg:px-8">
+                  <nav className="flex flex-col gap-4">
               {navLinks.map((link) => (
                 <div key={link.href}>
                   {link.hasDropdown ? (
@@ -232,10 +233,13 @@ export default function Header() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span>Work With Us</span>
-              </Link>
-            </nav>
+                  </Link>
+                  </nav>
+                </div>
+              )}
+            </div>
           </div>
-        )}
+        </div>
       </div>
     </header>
   );
