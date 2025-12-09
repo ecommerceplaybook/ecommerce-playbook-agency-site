@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { SiteLayout } from "@/components/layout/SiteLayout";
 import "../globals.css";
 
 export default function MarketingLayout({ children }: { children: ReactNode }) {
-  return <SiteLayout>{children}</SiteLayout>;
+  // Temporarily hiding header/footer for coming soon page
+  return <div className="min-h-screen">{children}</div>;
 }
