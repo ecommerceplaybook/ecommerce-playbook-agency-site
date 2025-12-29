@@ -29,6 +29,13 @@ export default function Hero() {
             background: 'radial-gradient(ellipse at 70% 5%, rgba(114, 253, 78, 0.25) 0%, transparent 60%)',
           }}
         />
+        {/* Darker overlay around CTA area */}
+        <div 
+          className="absolute inset-0 opacity-50"
+          style={{
+            background: 'radial-gradient(ellipse at 50% 45%, rgba(3, 9, 1, 0.8) 0%, rgba(3, 9, 1, 0.6) 40%, transparent 70%)',
+          }}
+        />
       </div>
       
       {/* Hero Content */}
@@ -67,7 +74,7 @@ export default function Hero() {
             </p>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row mb-16">
               <Link
                 href="/services"
                 className="group relative inline-flex w-full sm:w-auto h-[52px] items-center justify-center rounded-2xl px-8 text-base font-medium text-[#111311] transition-all duration-200 hover:-translate-y-[1px] hover:shadow-lg"
@@ -86,84 +93,149 @@ export default function Hero() {
                 Let's Connect
               </Link>
             </div>
-            
-            {/* Trust Logos */}
-            <div className="mt-12 flex flex-col items-center gap-6">
-              <p className="text-sm text-white/73">Trusted by 7- and 8-Figure Shopify Brands:</p>
-              <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8">
-                <div className="flex items-center justify-center h-8 opacity-60 hover:opacity-100 transition-opacity">
-                  <Image
-                    src="/black-tie.png"
-                    alt="Black Tie"
-                    width={120}
-                    height={32}
-                    className="h-8 w-auto object-contain brightness-0 invert"
-                  />
-                </div>
-                <div className="flex items-center justify-center h-8 opacity-60 hover:opacity-100 transition-opacity">
-                  <Image
-                    src="/brand-2.svg"
-                    alt="Brand 2"
-                    width={120}
-                    height={32}
-                    className="h-8 w-auto object-contain brightness-0 invert"
-                  />
-                </div>
-                <div className="flex items-center justify-center h-8 opacity-60 hover:opacity-100 transition-opacity">
-                  <Image
-                    src="/ooo.png"
-                    alt="OOO"
-                    width={120}
-                    height={32}
-                    className="h-8 w-auto object-contain brightness-0 invert"
-                  />
-                </div>
-                <div className="flex items-center justify-center h-8 opacity-60 hover:opacity-100 transition-opacity">
-                  <Image
-                    src="/arc-grove.png"
-                    alt="Arc Grove"
-                    width={120}
-                    height={32}
-                    className="h-8 w-auto object-contain brightness-0 invert"
-                  />
-                </div>
-                <div className="flex items-center justify-center h-8 opacity-60 hover:opacity-100 transition-opacity">
-                  <Image
-                    src="/Kidsy-Logo-Desktop.avif"
-                    alt="Kidsy"
-                    width={120}
-                    height={32}
-                    className="h-8 w-auto object-contain brightness-0 invert"
-                  />
-                </div>
-              </div>
-            </div>
-            
-            {/* Disclaimer */}
-            <div className="mt-8">
-              <p className="text-xs text-white/50">
-                <span className="text-white/60">Note:</span> You are experiencing a conversion rate optimized custom Headless Shopify store.{" "}
-                <Link href="/tools" className="underline hover:text-white/80">
-                  To view all conversion rate tactics on this page click here
-                </Link>
-                .
-              </p>
-            </div>
           </div>
-          
-          {/* Product Screenshot/Video */}
-          <div className="mt-16">
-            <div className="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border border-white/8 bg-black/40 backdrop-blur-sm">
-              <div className="aspect-video w-full bg-gradient-to-br from-[#030901] to-black">
-                {/* Placeholder for product screenshot/video */}
-                <div className="flex h-full items-center justify-center">
-                  <div className="text-center">
-                    <div className="mb-4 text-4xl">📊</div>
-                    <p className="text-white/50">Product Dashboard Preview</p>
-                  </div>
+        </div>
+      </div>
+
+      {/* Testimonials Section - Light Background */}
+      <div className="relative bg-[#f1f0ee] py-20 lg:py-32">
+        <div className="page-container mx-auto max-w-7xl px-6">
+          {/* Stats Text */}
+          <div className="mb-12 flex flex-col items-center justify-center">
+            <p className="text-sm text-[#686868] text-center">
+              100% Job Success • $200K+ Total Earnings • 86 Completed Jobs • Trusted by 5 Shopify Brands
+            </p>
+          </div>
+
+          {/* Testimonials Grid */}
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4 auto-rows-max">
+            {[
+              {
+                text: "Wow, this is absolutely incredible – huge props to the @relume_io team for bringing these amazing AI superpowers to more Webflow visual developers!",
+                author: "@callmevlad",
+                role: "Co-founder & CEO @webflow",
+                avatar: "http://localhost:3845/assets/90b0caeca490c87a82b5e4b027289339fe09455a.png",
+              },
+              {
+                text: "Finally an Ai tool that I will ACTUALLY include as part of my workflow. I love how seamless it is from start to finish.",
+                author: "@SoyBalta",
+                role: "Designer & Webflow developer",
+                avatar: "http://localhost:3845/assets/cce003bf613c80be3ce0fd528e98260cd072ef65.png",
+              },
+              {
+                text: "This is pure magic. ✨ → Sitemaps in seconds → Wireframes in minutes → Full copy written with AI → Layered wireframes to Figma @relume_io saving the day for web and product designers!",
+                author: "@DannPetty",
+                role: "Designer & Content Creator",
+                avatar: "http://localhost:3845/assets/fbb691e187dc53f7ae02c9401d72eb45dc387ad2.png",
+              },
+              {
+                text: "Bro what?! Are you telling I was able to produce all of this with just one prompt? As soon as that happened, I signed up for the highest tier plan RIGHT AWAY. If you're a web designer, it's honestly a no-brainer that you have to sign up for @relume_io . They shut it down with this one 🔥",
+                author: "@rrabrot",
+                role: "Designer & Webflow developer",
+                avatar: "http://localhost:3845/assets/91f50497229c425c9f0f85930a913b76c5c63410.png",
+              },
+              {
+                text: "Yooooooooo, this is 🔥 @relume_io has been one of my favorite teams I've seen evolve in the @webflow space. They're carving out a tremendous groove that designers and developers can vibe in when being able to generate web concepts.",
+                author: "@rileyj_s",
+                role: "Designer & Webflow developer",
+                avatar: "http://localhost:3845/assets/fbb691e187dc53f7ae02c9401d72eb45dc387ad2.png",
+              },
+              {
+                text: "Epic and Amazing... The @relume_io products that were already amazing, gain another great addition with the site builder. This a really time saver",
+                author: "",
+                role: "",
+                avatar: "",
+              },
+              {
+                text: "This is insane. The amount of time and effort that goes into what the AI just generated in seconds 🤯 Relume are revitalising the fun in web design.",
+                author: "@cjpux_",
+                role: "Designer",
+                avatar: "http://localhost:3845/assets/ffd61d89f447506d645c196c16e70e4d356278dc.png",
+              },
+              {
+                text: "This is the most exciting AI website product I've seen — great work Relume team!!! Looks especially powerful for serious web professionals looking to build a site for scale. Having tried an earlier version the \"building of site IA in real time\" was 🤩",
+                author: "@brryant",
+                role: "Co-founder @webflow",
+                avatar: "http://localhost:3845/assets/d852d4301f2485d19821e8e882869420fae7abbb.png",
+              },
+              {
+                text: "The new @relume_io AI Sitemap and Wireframe tools are game changers! This can absolutely speed up our development and will change how we build and design @webflow sites going forward. Huge shoutout to @AdamMura and the entire Relume team! 🎉",
+                author: "@KarimArdalan",
+                role: "Designer & Webflow developer",
+                avatar: "http://localhost:3845/assets/117c01689ed5ec9dff86e4c177a68888849ab4ec.png",
+              },
+              {
+                text: "Very excited for @relume_io 's new AI-powered generative website builder. I love the messaging and positioning: 'to empower you, not replace you'. Strategic language to get even skeptical designers, who believe AI is the end of their jobs, to jump in.",
+                author: "@gabelopez",
+                role: "Designer",
+                avatar: "http://localhost:3845/assets/117c01689ed5ec9dff86e4c177a68888849ab4ec.png",
+              },
+              {
+                text: "Been sitting here with my jaw on the floor - periodically saying \"oh my god, no fucking way\" after checking out @relume_io new site builder. This is nutz my",
+                author: "",
+                role: "",
+                avatar: "",
+              },
+              {
+                text: "@relume_io bringing the heat 🔥 Big big fan. Been using it on client projects to build sitemaps",
+                author: "",
+                role: "",
+                avatar: "",
+              },
+            ].map((testimonial, index) => {
+              const heightClasses = [
+                "lg:min-h-[280px]",
+                "lg:min-h-[220px]",
+                "lg:min-h-[240px]",
+                "lg:min-h-[320px]",
+                "lg:min-h-[260px]",
+                "lg:min-h-[200px]",
+                "lg:min-h-[230px]",
+                "lg:min-h-[290px]",
+                "lg:min-h-[270px]",
+                "lg:min-h-[250px]",
+                "lg:min-h-[210px]",
+                "lg:min-h-[180px]",
+              ];
+              const heightClass = heightClasses[index] || "lg:min-h-[240px]";
+              
+              return (
+                <div
+                  key={index}
+                  className={`rounded-2xl bg-white p-5 shadow-[0px_1px_3px_0px_rgba(0,0,0,0.08),0px_1px_2px_0px_rgba(0,0,0,0.04)] flex flex-col ${heightClass}`}
+                >
+                  <p className="mb-4 text-[17px] font-medium leading-[27px] text-[#161616] flex-grow">
+                    {testimonial.text}
+                  </p>
+                  
+                  {testimonial.author && (
+                    <div className="flex items-start justify-between gap-4 mt-auto">
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[15px] font-medium leading-6 text-[#161616]">
+                          {testimonial.author}
+                        </p>
+                        {testimonial.role && (
+                          <p className="text-[13px] leading-[21px] text-[rgba(22,22,22,0.65)]">
+                            {testimonial.role}
+                          </p>
+                        )}
+                      </div>
+                      
+                      {testimonial.avatar && (
+                        <div className="relative h-10 w-10 flex-shrink-0 overflow-hidden rounded-lg">
+                          <img
+                            src={testimonial.avatar}
+                            alt={testimonial.author}
+                            className="absolute inset-0 h-full w-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
                 </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>

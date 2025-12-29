@@ -46,10 +46,10 @@ export default function HomePage() {
         </ul>
       </nav>
 
-      {/* Content */}
-      <div className="relative z-10 text-center px-6">
-        {/* Optional: Add a subtle animation or additional text */}
-        <div className="mb-8">
+      {/* Content - Full Width, Centered */}
+      <div className="relative z-10 w-full text-center px-6">
+        {/* Top Rated Badge */}
+        <div className="mb-6">
           <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-gray-200 bg-gray-50">
             <div className="h-2 w-2 rounded-full bg-[#72fd4e] animate-pulse"></div>
             <p className="text-sm text-gray-700">Top Rated Plus CRO Agency</p>
@@ -63,8 +63,8 @@ export default function HomePage() {
             .{" "}
             <span className="text-gray-900 font-bold">Guaranteed.</span>
           </h1>
-          <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mb-8">
-            We optimize your customer journey to maximize conversions and revenue without increasing ad spend.
+          <p className="text-xl md:text-2xl text-gray-600 max-w-2xl mx-auto mb-8 leading-tight">
+            No bs. Everything is tracked. We optimize your customer journey so your customers leave with an order confirmation instead of constant confusion.
           </p>
           <span 
             className="inline-block rounded-2xl"
@@ -86,7 +86,7 @@ export default function HomePage() {
           {/* Used by Brands Section */}
           <div className="mt-12">
             <p className="text-sm text-gray-600 mb-6">
-              Used by leading brands and companies from across the globe
+              100% Job Success • $200K+ Total Earnings • 86 Completed Jobs • Trusted by 5 Shopify Brands
             </p>
             <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
               <div className="flex items-center justify-center h-8 opacity-60 hover:opacity-100 transition-opacity">
