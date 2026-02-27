@@ -15,37 +15,6 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Vertical Menu */}
-      <nav className="absolute top-6 right-6 z-20">
-        <ul className="flex flex-col gap-1.5 text-left">
-          <li>
-            <Link href="/results" className="text-gray-900 hover:text-gray-600 transition-colors text-sm font-medium">
-              Results
-            </Link>
-          </li>
-          <li>
-            <Link href="/services" className="text-gray-900 hover:text-gray-600 transition-colors text-sm font-medium">
-              Services
-            </Link>
-          </li>
-          <li>
-            <Link href="/testimonials" className="text-gray-900 hover:text-gray-600 transition-colors text-sm font-medium">
-              Testimonials
-            </Link>
-          </li>
-          <li>
-            <Link href="/resources" className="text-gray-900 hover:text-gray-600 transition-colors text-sm font-medium">
-              Resources
-            </Link>
-          </li>
-          <li>
-            <Link href="/contact" className="text-gray-900 hover:text-gray-600 transition-colors text-sm font-medium">
-              Contact
-            </Link>
-          </li>
-        </ul>
-      </nav>
-
       {/* Content - Full Width, Centered */}
       <div className="relative z-10 w-full text-center px-6">
         {/* Top Rated Badge */}
