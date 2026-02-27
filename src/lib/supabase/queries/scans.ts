@@ -1,5 +1,5 @@
 import { supabase } from "../client";
-import type { Scan, ScanResult, ScanArtifact, ScanStatus, ScanWithResults } from "@/lib/types/cro-checker";
+import type { Scan, ScanResult, ScanArtifact, ScanStatus, ScanWithResults, RuleResult } from "@/lib/types/cro-checker";
 
 /**
  * Create a new scan record
@@ -154,7 +154,7 @@ export async function updateScanScores(
 /**
  * Save rule results for a scan
  */
-export async function saveRuleResults(scanId: string, results: ScanResult[]): Promise<void> {
+export async function saveRuleResults(scanId: string, results: RuleResult[]): Promise<void> {
   if (!supabase) {
     throw new Error("Supabase client not configured");
   }

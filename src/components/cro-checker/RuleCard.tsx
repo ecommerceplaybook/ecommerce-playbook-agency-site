@@ -8,8 +8,8 @@ interface RuleCardProps {
 }
 
 export function RuleCard({ result }: RuleCardProps) {
-  const rule = CRO_RULES.find((r) => r.id === result.ruleId);
-  const title = rule?.title || result.ruleId.replace(/-/g, " ");
+  const rule = CRO_RULES.find((r) => r.id === result.rule_id);
+  const title = rule?.title || result.rule_id.replace(/-/g, " ");
 
   return (
     <Card className={`border-l-4 ${result.passed ? "border-l-green-500" : "border-l-red-500"}`}>

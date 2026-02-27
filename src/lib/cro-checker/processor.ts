@@ -94,13 +94,13 @@ export async function processScan(scanId: string, url: string): Promise<void> {
       const performanceMetrics = await analyzePerformance(url);
       performanceScore = performanceMetrics.score;
 
-      performanceMetricsUrl = await uploadMetrics(scanId, performanceMetrics);
+      performanceMetricsUrl = await uploadMetrics(scanId, performanceMetrics as unknown as Record<string, unknown>);
       await saveArtifacts(scanId, [
         {
           scan_id: scanId,
           type: "metrics",
           url: performanceMetricsUrl,
-          metadata: performanceMetrics,
+          metadata: performanceMetrics as unknown as Record<string, unknown>,
         },
       ]);
     } catch (error) {
